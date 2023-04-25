@@ -20,6 +20,10 @@ app.get('/', function(req, res) {
 let dataShortener = []
 
 app.post('/api/shorturl', function(req, res) {
+  if (req.body.url == "") {
+    res.json({ error: 'invalido'})
+  }
+
   try{
     let url = new URL(req.body.url)
     let obj = { original_url : url.href, short_url : Math.floor(Math.random() * 10000)}
